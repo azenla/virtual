@@ -1,0 +1,6 @@
+disabled_rules:
+- type_name
+line_length: 180
+identifier_name:
+  excluded:
+  - id
