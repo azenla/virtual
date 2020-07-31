@@ -32,7 +32,12 @@ struct VirtualCommand: ParsableCommand {
   @Option(name: .shortAndLong, help: "Machine Memory")
   var memory: Int = 2048
 
+  @Flag(name: .shortAndLong, help: "")
+  var network: Bool = false
+
   mutating func run() throws {
+    enableRawMode(fileHandle: FileHandle.standardInput)
+    
     let system = VirtualSystem(command: self)
     let semaphore = DispatchSemaphore(value: 0)
     do {
