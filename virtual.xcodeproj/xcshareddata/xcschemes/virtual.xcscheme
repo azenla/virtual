@@ -35,7 +35,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "$(PROJECT_DIR)"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
@@ -52,15 +53,19 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--kernel=/Users/kendfinger/Code/Personal/virtual/alpine/vmlinuz"
+            argument = "--kernel=linux/ubuntu/vmlinuz"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--ramdisk=/Users/kendfinger/Code/Personal/virtual/alpine/initramfs"
+            argument = "--ramdisk=linux/ubuntu/initrd"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--disk=/Users/kendfinger/Code/Personal/virtual/alpine/modloop"
+            argument = "--disk=linux/ubuntu/desktop.iso"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--cmdline=&quot;console=hvc0,9800&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

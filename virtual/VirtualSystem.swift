@@ -65,7 +65,7 @@ class VirtualSystem: NSObject, VZVirtualMachineDelegate {
     config.memoryBalloonDevices = [memoryBalloon]
     config.serialPorts = [serial]
     config.storageDevices = storage
-    // config.networkDevices = [networkDevice]
+    config.networkDevices = [networkDevice]
 
     try config.validate()
     let vm = VZVirtualMachine(configuration: config)
