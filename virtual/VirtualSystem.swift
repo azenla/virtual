@@ -50,7 +50,7 @@ class VirtualSystem: NSObject, VZVirtualMachineDelegate {
     let networkDevice = VZVirtioNetworkDeviceConfiguration()
     networkDevice.attachment = VZNATNetworkDeviceAttachment()
 
-    let serial = VZVirtioConsoleDeviceConfiguration()
+    let serial = VZVirtioConsoleDeviceSerialPortConfiguration()
 
     serial.attachment = VZFileHandleSerialPortAttachment(
       fileHandleForReading: FileHandle.standardInput,
