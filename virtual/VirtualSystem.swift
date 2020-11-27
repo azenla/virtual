@@ -11,9 +11,9 @@ import Virtualization
 class VirtualSystem: NSObject, VZVirtualMachineDelegate {
   let command: VirtualCommand
   let queue = DispatchQueue(label: "io.endfinger.virtual.vm")
-  
+
   var machine: VZVirtualMachine?
-  
+
   init(command: VirtualCommand) {
     self.command = command
   }
@@ -76,43 +76,42 @@ class VirtualSystem: NSObject, VZVirtualMachineDelegate {
     try config.validate()
     let vm = VZVirtualMachine(configuration: config, queue: queue)
     vm.delegate = self
-    self.machine = vm
+    machine = vm
 
     queue.sync {
       vm.start { result in
         switch result {
         case .success:
           NSLog("Virtual Machine Started")
-          break
-        case .failure(let error):
+        case let .failure(error):
           NSLog("Virtual Machine Failure: \(error)")
         }
       }
     }
   }
-  
+
   func stateToString() -> String {
     guard let vm = machine else {
       return "Unknown"
     }
-    
+
     switch vm.state {
     case .stopped:
-        return "Stopped"
+      return "Stopped"
     case .running:
-        return "Running"
+      return "Running"
     case .paused:
-        return "Paused"
+      return "Paused"
     case .error:
-        return "Error"
+      return "Error"
     case .starting:
-        return "Starting"
+      return "Starting"
     case .pausing:
-        return "Pausing"
+      return "Pausing"
     case .resuming:
-        return "Resuming"
+      return "Resuming"
     @unknown default:
-        return "Unknown"
+      return "Unknown"
     }
   }
 

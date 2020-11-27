@@ -32,18 +32,17 @@ struct VirtualCommand: ParsableCommand {
 
   @Option(name: .shortAndLong, help: "Machine Memory")
   var memory: Int = 2048
-  
+
   @Flag(name: .shortAndLong, help: "Enable NAT Networking")
   var network: Bool = false
 
   mutating func run() throws {
     enableRawMode(fileHandle: FileHandle.standardInput)
 
-
     let system = VirtualSystem(command: self)
     do {
       try system.start()
-    
+
       var lastState: VZVirtualMachine.State = .stopped
       while system.machine != nil {
         let currentState = system.machine!.state
@@ -51,11 +50,11 @@ struct VirtualCommand: ParsableCommand {
           NSLog("Virtual Machine State: \(system.stateToString())")
           lastState = currentState
         }
-        
+
         if currentState == .error {
           VirtualCommand.exit()
         }
-        
+
         sleep(1)
       }
     } catch {
