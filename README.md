@@ -10,7 +10,7 @@ Boot Linux VMs in a single command on macOS using the new [Virtualization.framew
 ## Usage
 
 ```bash
-$ virtual -k ubuntu/vmlinuz -r ubuntu/initrd -d ubuntu/ubuntu.iso
+$ virtual -k ubuntu/vmlinuz -r ubuntu/initrd -d ubuntu/ubuntu.iso --network
 Ubuntu 20.04 LTS ubuntu hvc0
 ubuntu login:
 ```

@@ -33,7 +33,7 @@ struct VirtualCommand: ParsableCommand {
   @Option(name: .shortAndLong, help: "Machine Memory")
   var memory: Int = 2048
   
-  @Option(name: .shortAndLong, help: "Enable Network")
+  @Flag(name: .shortAndLong, help: "Enable NAT Networking")
   var network: Bool = false
 
   mutating func run() throws {
