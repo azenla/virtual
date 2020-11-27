@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A2221922571779B00701E83 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2221912571779B00701E83 /* Constants.swift */; };
+		2A2221952571786A00701E83 /* VirtualCommandRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2221942571786A00701E83 /* VirtualCommandRun.swift */; };
+		2A2221992571792B00701E83 /* VirtualVersionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2221982571792B00701E83 /* VirtualVersionOptions.swift */; };
 		2ABF25AC24CF7B07001BEDC2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF25AB24CF7B07001BEDC2 /* main.swift */; };
 		2ABF25B524CF7BD4001BEDC2 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 2ABF25B424CF7BD4001BEDC2 /* ArgumentParser */; };
 		2AC0F3C024D099A500880496 /* VirtualCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC0F3BF24D099A500880496 /* VirtualCommand.swift */; };
@@ -27,6 +30,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2A2221912571779B00701E83 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2A2221942571786A00701E83 /* VirtualCommandRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualCommandRun.swift; sourceTree = "<group>"; };
+		2A2221982571792B00701E83 /* VirtualVersionOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualVersionOptions.swift; sourceTree = "<group>"; };
 		2ABF25A824CF7B07001BEDC2 /* virtual */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = virtual; sourceTree = BUILT_PRODUCTS_DIR; };
 		2ABF25AB24CF7B07001BEDC2 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2ABF25B224CF7B62001BEDC2 /* virtual.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = virtual.entitlements; sourceTree = "<group>"; };
@@ -79,8 +85,11 @@
 				2ABF25B224CF7B62001BEDC2 /* virtual.entitlements */,
 				2ABF25B624CF85CC001BEDC2 /* Info.plist */,
 				2AC0F3BF24D099A500880496 /* VirtualCommand.swift */,
+				2A2221942571786A00701E83 /* VirtualCommandRun.swift */,
 				2AC0F3C124D099C700880496 /* VirtualSystem.swift */,
+				2A2221982571792B00701E83 /* VirtualVersionOptions.swift */,
 				2AC0F3C724D2526000880496 /* Utils.swift */,
+				2A2221912571779B00701E83 /* Constants.swift */,
 			);
 			path = virtual;
 			sourceTree = "<group>";
@@ -148,6 +157,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A2221952571786A00701E83 /* VirtualCommandRun.swift in Sources */,
+				2A2221992571792B00701E83 /* VirtualVersionOptions.swift in Sources */,
+				2A2221922571779B00701E83 /* Constants.swift in Sources */,
 				2ABF25AC24CF7B07001BEDC2 /* main.swift in Sources */,
 				2AC0F3C224D099C700880496 /* VirtualSystem.swift in Sources */,
 				2AC0F3C024D099A500880496 /* VirtualCommand.swift in Sources */,

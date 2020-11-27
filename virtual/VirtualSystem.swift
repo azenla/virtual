@@ -9,12 +9,12 @@ import Foundation
 import Virtualization
 
 class VirtualSystem: NSObject, VZVirtualMachineDelegate {
-  let command: VirtualCommand
+  let command: VirtualCommandRun
   let queue = DispatchQueue(label: "io.endfinger.virtual.vm")
 
   var machine: VZVirtualMachine?
 
-  init(command: VirtualCommand) {
+  init(command: VirtualCommandRun) {
     self.command = command
   }
 

@@ -5,7 +5,13 @@ Boot Linux VMs in a single command on macOS using the new [Virtualization.framew
 ## Requirements
 
 - macOS Big Sur
-- Xcode 12
+- Xcode 12 (for build)
+
+## Install
+
+```
+$ brew install kendfinger/tools/virtual
+```
 
 ## Usage
 
