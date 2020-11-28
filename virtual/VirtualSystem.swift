@@ -40,7 +40,7 @@ class VirtualSystem: NSObject, VZVirtualMachineDelegate {
     var storage: [VZStorageDeviceConfiguration] = []
     if !command.disk.isEmpty {
       for disk in command.disk {
-        let blockAttachment = try VZDiskImageStorageDeviceAttachment(url: URL(fileURLWithPath: disk).absoluteURL, readOnly: true)
+        let blockAttachment = try VZDiskImageStorageDeviceAttachment(url: URL(fileURLWithPath: disk).absoluteURL, readOnly: false)
         let blockDevice = VZVirtioBlockDeviceConfiguration(attachment: blockAttachment)
         storage.append(blockDevice)
       }
