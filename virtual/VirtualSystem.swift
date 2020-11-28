@@ -40,7 +40,7 @@ class VirtualSystem: NSObject, VZVirtualMachineDelegate {
     var storage: [VZStorageDeviceConfiguration] = []
     if !command.disk.isEmpty {
       for disk in command.disk {
-        let blockAttachment = try VZDiskImageStorageDeviceAttachment(url: URL(fileURLWithPath: disk).absoluteURL, readOnly: true)
+        let blockAttachment = try VZDiskImageStorageDeviceAttachment(url: URL(fileURLWithPath: disk).absoluteURL, readOnly: false)
         let blockDevice = VZVirtioBlockDeviceConfiguration(attachment: blockAttachment)
         storage.append(blockDevice)
       }
@@ -50,6 +50,13 @@ class VirtualSystem: NSObject, VZVirtualMachineDelegate {
 
     if command.network {
       let networkDevice = VZVirtioNetworkDeviceConfiguration()
+      if !command.macaddr.isEmpty {
+        if let macAddress = VZMACAddress(string: command.macaddr) {
+            networkDevice.macAddress = macAddress
+        } else {
+            NSLog("Ignoring MAC Address: was not in acceptable format e.g. 01:23:45:ab:cd:ef")
+        }
+      }
       networkDevice.attachment = VZNATNetworkDeviceAttachment()
       network.append(networkDevice)
     }
