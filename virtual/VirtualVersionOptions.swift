@@ -6,6 +6,7 @@
 //
 
 import ArgumentParser
+import Cocoa
 
 struct VirtualVersionOptions: ParsableArguments {
   @Flag(name: .long, help: "Show the Tool Version")
@@ -13,7 +14,13 @@ struct VirtualVersionOptions: ParsableArguments {
 
   func validate() throws {
     if version {
-      print(virtualToolVersion)
+      let bundleVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String?
+
+      if let versionAsString = bundleVersion {
+        print("\(versionAsString)")
+      } else {
+        print("unknown")
+      }
       throw ExitCode.success
     }
   }

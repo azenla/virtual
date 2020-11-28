@@ -40,31 +40,32 @@ struct VirtualCommandRun: ParsableCommand {
   var version: Bool = false
 
   mutating func run() throws {
-    if version {
-      print("virtual version \(virtualToolVersion)")
-      VirtualCommand.exit()
-    }
-
     enableRawMode(fileHandle: FileHandle.standardInput)
 
     let system = VirtualSystem(command: self)
     do {
       try system.start()
 
-      var lastState: VZVirtualMachine.State = .stopped
-      while system.machine != nil {
+      let timer = DispatchSource.makeTimerSource(queue: DispatchQueue.main)
+      timer.schedule(deadline: .now(), repeating: .milliseconds(100))
+
+      var lastMachineState: VZVirtualMachine.State = .stopped
+      timer.setEventHandler {
         let currentState = system.machine!.state
-        if currentState != lastState {
+        if currentState != lastMachineState {
           NSLog("Virtual Machine State: \(system.stateToString())")
-          lastState = currentState
+          lastMachineState = currentState
         }
 
         if currentState == .error {
-          VirtualCommand.exit()
+          VirtualCommand.exit(withError: ExitCode.failure)
+        } else if currentState == .stopped {
+          VirtualCommand.exit(withError: ExitCode.success)
         }
-
-        sleep(1)
       }
+      timer.resume()
+
+      dispatchMain()
     } catch {
       NSLog("\(error)")
     }

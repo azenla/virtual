@@ -10,8 +10,6 @@ import Virtualization
 
 class VirtualSystem: NSObject, VZVirtualMachineDelegate {
   let command: VirtualCommandRun
-  let queue = DispatchQueue(label: "io.endfinger.virtual.vm")
-
   var machine: VZVirtualMachine?
 
   init(command: VirtualCommandRun) {
@@ -19,11 +17,11 @@ class VirtualSystem: NSObject, VZVirtualMachineDelegate {
   }
 
   func guestDidStop(_: VZVirtualMachine) {
-    NSLog("Guest Stop.")
+    NSLog("Virtual Machine Stopped")
   }
 
   func virtualMachine(_: VZVirtualMachine, didStopWithError error: Error) {
-    NSLog("Guest Stopped with error: \(String(describing: error))")
+    NSLog("Virtual Machine Stopped: \(String(describing: error))")
   }
 
   func start() throws {
@@ -74,18 +72,16 @@ class VirtualSystem: NSObject, VZVirtualMachineDelegate {
     config.networkDevices = network
 
     try config.validate()
-    let vm = VZVirtualMachine(configuration: config, queue: queue)
+    let vm = VZVirtualMachine(configuration: config)
     vm.delegate = self
     machine = vm
 
-    queue.sync {
-      vm.start { result in
-        switch result {
-        case .success:
-          NSLog("Virtual Machine Started")
-        case let .failure(error):
-          NSLog("Virtual Machine Failure: \(error)")
-        }
+    vm.start { result in
+      switch result {
+      case .success:
+        NSLog("Virtual Machine Started")
+      case let .failure(error):
+        NSLog("Virtual Machine Failure: \(error)")
       }
     }
   }
@@ -116,10 +112,8 @@ class VirtualSystem: NSObject, VZVirtualMachineDelegate {
   }
 
   func stop() throws {
-    if let machine = machine {
-      try queue.sync {
-        try machine.requestStop()
-      }
+    if let vm = machine {
+      try vm.requestStop()
     }
   }
 }
