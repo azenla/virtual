@@ -36,6 +36,10 @@ struct VirtualCommandRun: ParsableCommand {
   @Flag(name: .shortAndLong, help: "Enable NAT Networking")
   var network: Bool = false
 
+  // if not specified, will generate at random
+  @Option(name: [.customShort("a"), .long], help: "MAC Address")
+  var macaddr: String = ""
+
   @Flag(name: .long, help: "Show Version Information")
   var version: Bool = false
 
